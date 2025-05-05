@@ -75,6 +75,9 @@ const { json } = require("stream/consumers");
 
 const [, , directory_path] = process.argv;
 let counter = 0;
+
+//gadaecit shemdegi brdzaneba <node main.js something>
+
 async function main(fullPath) {
   const dirs = await fs.readdir(fullPath);
   for (let dir of dirs) {
@@ -92,3 +95,5 @@ async function main(fullPath) {
   console.log(counter);
 }
 main(directory_path);
+
+//gadaecit shemdegi brdzaneba <node main.js something>
