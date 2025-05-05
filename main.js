@@ -73,24 +73,22 @@ const { json } = require("stream/consumers");
 // Usage: node linecount.js <directory_path>
 // Concepts: process.argv (get path), fs.readdir, fs.readFile (read file contents), string splitting (.split('\n')) and filtering logic. Bonus: Make it recursive for subdirectories.
 
-// const [, , directory_path] = process.argv;
-
-// let counter = 0;
-// async function main(fullPath) {
-//   const dirs = await fs.readdir(fullPath);
-//   for (let dir of dirs) {
-//     const stat = await fs.stat(path.join(fullPath, dir));
-//     if (stat.isDirectory()) {
-//       const fullpathh = path.join(fullPath, dir);
-//       await main(fullpathh);
-//     } else if (stat.isFile() && dir.slice(-3) === ".js") {
-//       const read = await fs.readFile(path.join(fullPath, dir), "utf-8");
-//       for (let i = 0; i < read.split(`\n`).length; i++) {
-//         counter++;
-//       }
-//     }
-//   }
-//   console.log(counter);
-// }
-
-// main(directory_path);
+const [, , directory_path] = process.argv;
+let counter = 0;
+async function main(fullPath) {
+  const dirs = await fs.readdir(fullPath);
+  for (let dir of dirs) {
+    const stat = await fs.stat(path.join(fullPath, dir));
+    if (stat.isDirectory()) {
+      const fullpathh = path.join(fullPath, dir);
+      await main(fullpathh);
+    } else if (stat.isFile() && dir.slice(-3) === ".js") {
+      const read = await fs.readFile(path.join(fullPath, dir), "utf-8");
+      for (let i = 0; i < read.split(`\n`).length; i++) {
+        counter++;
+      }
+    }
+  }
+  console.log(counter);
+}
+main(directory_path);
