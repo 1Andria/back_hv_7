@@ -6,42 +6,42 @@ const { json } = require("stream/consumers");
 // Usage: node organize.js <directory_path>
 // Concepts: process.argv (get directory path), fs.readdir (list files), fs.stat (check if item is file/directory),check type, fs.mkdir (create subfolders), fs.rename (move files).
 
-const [, , filePath] = process.argv;
+// const [, , filePath] = process.argv;
 
-const folders = {
-  document: ["pdf", "txt"],
-  audio: ["mp3"],
-  img: ["jpg", "png"],
-};
+// const folders = {
+//   document: ["pdf", "txt"],
+//   audio: ["mp3"],
+//   img: ["jpg", "png"],
+// };
 
-let folderPath = filePath === "." || !filePath ? __dirname : filePath;
+// let folderPath = filePath === "." || !filePath ? __dirname : filePath;
 
-async function main() {
-  const dirs = await fs.readdir(folderPath);
-  for (let dir of dirs) {
-    const ext = dir.split(".")[1];
-    if (folders.img.includes(ext)) {
-      if (dir !== "images") {
-        await fs.mkdir("images");
-      }
-      await fs.rename(`${folderPath}/${dir}`, `${folderPath}/images/${dir}`);
-    }
-    if (folders.audio.includes(ext)) {
-      if (dir !== "audio") {
-        await fs.mkdir("audio");
-      }
-      await fs.rename(`${folderPath}/${dir}`, `${folderPath}/audio/${dir}`);
-    }
-    if (folders.document.includes(ext)) {
-      if (dir !== "document") {
-        await fs.mkdir("document");
-      }
-      await fs.rename(`${folderPath}/${dir}`, `${folderPath}/document/${dir}`);
-    }
-  }
-}
+// async function main() {
+//   const dirs = await fs.readdir(folderPath);
+//   for (let dir of dirs) {
+//     const ext = dir.split(".")[1];
+//     if (folders.img.includes(ext)) {
+//       if (dir !== "images") {
+//         await fs.mkdir("images");
+//       }
+//       await fs.rename(`${folderPath}/${dir}`, `${folderPath}/images/${dir}`);
+//     }
+//     if (folders.audio.includes(ext)) {
+//       if (dir !== "audio") {
+//         await fs.mkdir("audio");
+//       }
+//       await fs.rename(`${folderPath}/${dir}`, `${folderPath}/audio/${dir}`);
+//     }
+//     if (folders.document.includes(ext)) {
+//       if (dir !== "document") {
+//         await fs.mkdir("document");
+//       }
+//       await fs.rename(`${folderPath}/${dir}`, `${folderPath}/document/${dir}`);
+//     }
+//   }
+// }
 
-main();
+// main();
 
 // 2) Directory Content Search:
 // Goal: Create a tool that searches for a specific text string within all files (e.g., .txt, .js) in a given directory.
