@@ -23,7 +23,6 @@ const { json } = require("stream/consumers");
 //     }
 //     if (stat.isFile()) {
 //       const extname = path.extname(dir);
-//       console.log(extname, "extname");
 //       for (let [type, endwith] of Object.entries(types)) {
 //         if (endwith.includes(extname)) {
 //           await fs.mkdir(type);
